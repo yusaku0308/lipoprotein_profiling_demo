@@ -1,0 +1,17 @@
+#パッケージの読み込み
+import pandas as pd
+import pandas_profiling as pdp
+
+＃データの読み込み
+df = pd.read_excel("master_3.xlsx")
+
+＃categorical変数をbool値へ変換
+df['SEX'].replace(['M', 'F'], [0, 1], inplace=True)
+
+#profilingの実行
+profile = pdp.ProfileReport(df)
+
+＃htmlファイルへエクスポート
+profile.to_file("master_3.html")
+from IPython.display import HTML
+HTML(filename='master_3.html')
